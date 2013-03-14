@@ -84,7 +84,7 @@ _Something the user knowns._
 Knowledge factors is the most common form of authentication used. In this form
 user is required to prove the knowledge of a secret in order to authenticate.
 
-* **Challenge Response**
+* **Challenge Question**
 * **Password**
 * **Pass Phrase**
 * **Pattern** (on Android devices for instance)
@@ -128,6 +128,14 @@ enters through the keypad ("something the user knows").
 
 ---
 
+# Two-Factor Authentication Process
+
+<br />
+
+![](../images/twofactorauth.png)
+
+---
+
 # Examples
 
 **Amazon Web Services:** AWS Multi-Factor Authentication
@@ -155,6 +163,15 @@ parties.
 
 Authentication with passwords is **weak**.
 
+
+### Examples
+
+* Passwords
+* Challenge Questions
+* PIN
+
+And generally speaking, everything that uses **one** authentication factor.
+
 ---
 
 # Strong Authentication
@@ -162,3 +179,19 @@ Authentication with passwords is **weak**.
 ---
 
 # Strong Authentication
+
+_Techniques that permit entities to provide evidence that they know a particular
+secret without revealing the secret._
+
+It is a system of verifying user and network server identities on an unprotected
+network in which **the parties must demonstrate knowledge of a "secret"** rather
+than transmit a password.
+
+Typically the verification is done **via a trusted third-party authentication
+service** using conventional cryptography.
+
+Strong authentication is **not necessarily multifactor authentication**.
+For instance, soliciting multiple answers to challenge questions may be
+considered strong authentication but, unless the process also retrieves
+_something you have_ or _something you are_, it would not be considered
+multi-factor authentication.
