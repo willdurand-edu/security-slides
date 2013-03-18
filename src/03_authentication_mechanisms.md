@@ -2,14 +2,19 @@
 
 ---
 
+# Authentication answers the following question:<br /><br />Are They Really Who They Say They Are?
+
+---
+
 # Agenda
 
 * HTTP Basic
 * HTTP Token
 * HTTP Digest
 * Form Based
-* WSSE Username Token
+* Web Services Security
 * OpenID
+* Other Authentication Mechanisms
 
 ---
 
@@ -126,7 +131,7 @@ one-way hash** so it's impossible to reverse-engineer even if SSL is not used.
 It is an **application of MD5 cryptographic hashing with usage of nonce values to
 prevent replay attacks**.
 
-However, it still must be implemented by the browser and can't be designed in to
+However, it still must be implemented by the browser and can't be designed into
 a nice UI.
 
 ---
@@ -199,6 +204,14 @@ checked by performing the same calculation.
 
 ---
 
+# HTTP Digest Authentication In Picture
+
+<br />
+
+![](http://www.cgisecurity.com/owasp/html/images/HTTP_digest.png)
+
+---
+
 # Form Based Authentication
 
 ---
@@ -233,18 +246,34 @@ encrypted tunnel between the client and server.
 
 ---
 
-# WSSE Username Token
+# Web Services Security
+
+---
+
+# Web Services Security
+
+**W**eb **S**ervices **SE**curity (WSSE) also known as WSS or WS-Security is a
+family of open security specifications for web services, specifically SOAP web
+services.
+
+Authentication can be done using **security tokens**.
+
+WS-Security allows you to use any security token you like to use. There are
+two different options:
+
+* **username/password authentication** also known as **WSSE Username Token**;
+* **binary authentication tokens**, also know as **WSSE Binary Token**  in the
+form of _Kerberos_ tickets or _X.509_ certificates;
+
+In addition, **custom binary security tokens** can be applied.
 
 ---
 
 # WSSE Username Token
 
-**W**eb **S**ervices **SE**curity (WSSE) is a family of open security
-specifications for web services, specifically SOAP web services.
+The **Username Token algorithm** is not SOAP-specific.
 
-However, the **Username Token algorithm** is not SOAP-specific.
-
-The benefits of WSSE are:
+The benefits of WSSE Username Token are:
 
 * Username / Password encryption;
 * Safe guarding against replay attacks;
@@ -394,3 +423,74 @@ that you are who you say you are.
 Once you establish yourself as the person who uses a particular OpenID, whenever
 someone sees your OpenID in use, anywhere on the Internet, they will know that
 it's you.
+
+---
+
+# Other Authentication Mechanisms
+
+---
+
+# Kerberos
+
+Kerberos is a **secure method for authenticating a request for a service in a
+computer network**.
+
+Kerberos protocol messages are **protected against eavesdropping** and **replay
+attacks**. It builds on **symmetric key cryptography** and **requires a trusted
+third party**.
+
+Kerberos lets a user request an encrypted _ticket_ from an authentication
+process that can then be used to request a particular service from a server. The
+user's password does not have to pass through the network.
+
+When the Kerberos server is **down**, **no one can log in**.
+
+---
+
+# How Does Kerberos Work? (1/2)
+
+Suppose you want to access a server on another computer. You know that this
+server requires a Kerberos "ticket" before it will honor your request.
+
+To get your ticket, you first **request authentication** from the
+**Authentication Server** (AS).
+
+The Authentication Server creates a **session key** basing it on your password
+and a random value that represents the requested service. The session key is a
+**ticket-granting ticket**.
+
+You next send your ticket-granting ticket to a **Ticket Granting Server** (TGS).
+The TGS returns the ticket that can be sent to the server for the requested
+service.
+
+The service either **rejects the ticket or accepts it** and performs the service.
+
+Because the ticket you received from the TGS is time-stamped, it allows you to
+make additional requests using the same ticket within a certain time period
+without having to be reauthenticated.
+
+---
+
+# How Does Kerberos Work? (2/2)
+
+<br />
+
+![](http://edc.tversu.ru/elib/inf/0041/images/fig18_02_0.jpg)
+
+---
+
+# Remote Authentication Dial-In User Service (RADIUS)
+
+A **networking protocol** that **provides centralized Authentication**,
+Authorization, and Accounting (AAA) management for computers to connect and use
+a network service.
+
+RADIUS is a client/server protocol that runs in the application layer, using UDP
+as transport. It is described in [RFC 2865](http://www.ietf.org/rfc/rfc2865.txt).
+
+In RADIUS, **authentication and authorization are coupled together**. If the
+username is found and the password is correct, the RADIUS server returns an
+`Access-Accept` response, including a list of attribute-value pairs that describe
+the parameters to be used for this session.
+
+![](../images/radius_auth.gif)
