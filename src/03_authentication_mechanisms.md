@@ -6,8 +6,8 @@
 
 * HTTP Basic
 * HTTP Token
-* Form Based
 * HTTP Digest
+* Form Based
 * WSSE Username Token
 * OpenID
 
@@ -113,40 +113,6 @@ Can be useful when you need to secure a private API, because it is really
 
 ---
 
-# Form Based Authentication
-
----
-
-# Form Based Authentication
-
-It refers to the notion of a user being presented with an editable **form to
-fill in and submit** in order to log in to some system or service.
-
-As a user, you visit a web page that **prompts you for a username and password**.
-If authentication is successful, then under the covers you are granted a unique
-cookie, which your web browser sends with each subsequent request.
-
-It just looks like you logged in and now the site works, but under the covers it
-is quite different from _Basic_.
-
-Credentials are **sent in plaintext** if you don't rely on SSL to create an
-encrypted tunnel between the client and server.
-
----
-
-# The Form Authentication Flow
-
-<br />
-
-![](../images/form_authentication.png)
-
-<br />
-
-<small>Source: [Single Sign On (SSO) for cross-domain ASP.NET applications: Part-I
-- The design blue print](http://www.codeproject.com/Articles/106439/Single-Sign-On-SSO-for-cross-domain-ASP-NET-applic).</small>
-
----
-
 # HTTP Digest Authentication
 
 ---
@@ -230,6 +196,40 @@ client.
 
 Since the server has the same information as the client, the response can be
 checked by performing the same calculation.
+
+---
+
+# Form Based Authentication
+
+---
+
+# Form Based Authentication
+
+It refers to the notion of a user being presented with an editable **form to
+fill in and submit** in order to log in to some system or service.
+
+As a user, you visit a web page that **prompts you for a username and password**.
+If authentication is successful, then under the covers you are granted a unique
+cookie, which your web browser sends with each subsequent request.
+
+It just looks like you logged in and now the site works, but under the covers it
+is quite different from _Basic_.
+
+Credentials are **sent in plaintext** if you don't rely on SSL to create an
+encrypted tunnel between the client and server.
+
+---
+
+# The Form Authentication Flow
+
+<br />
+
+![](../images/form_authentication.png)
+
+<br />
+
+<small>Source: [Single Sign On (SSO) for cross-domain ASP.NET applications: Part-I
+- The design blue print](http://www.codeproject.com/Articles/106439/Single-Sign-On-SSO-for-cross-domain-ASP-NET-applic).</small>
 
 ---
 
