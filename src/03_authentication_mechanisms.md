@@ -5,22 +5,27 @@
 # Agenda
 
 * HTTP Basic
+* HTTP Token
 * Form Based
 * HTTP Digest
 * WSSE Username Token
-* Open ID
+* OpenID
 
 ---
 
-# HTTP Basic
+# HTTP Basic Authentication
 
-The oldest and most common format for web authentication.
+---
+
+# HTTP Basic Authentication
+
+The oldest and **most common format for web authentication**.
 
 Requests are authenticated in the form of the user’s username and password:
 
     https://username:password@www.example.org/
 
-Low security, but can be reinforced through the use of SSL/TLS.
+**Low security**, but can be reinforced through the use of SSL/TLS.
 
 Users can disable API access from third-party apps at any time by changing their
 username or password.
@@ -58,31 +63,102 @@ encoded string.
 
 ---
 
-# Form Based
+# Apache And The `.htaccess` File
 
-It refers to the notion of a user being presented with an editable "form" to
-fill in and submit in order to log in to some system or service.
+Apache can be configured through a `.htaccess` file that allows to:
 
-As a user, you visit a web page that prompts you for a username and password. If
-authentication is successful, then under the covers you are granted a unique
+* restrict access to a directory or a file;
+* rewrite URLs;
+* display custom error pages.
+
+
+### Example
+
+    AuthUserFile /path/to/.htpasswd
+    AuthName "Restricted Area"
+    AuthType Basic
+    require valid-user
+
+Add username/password using the following command:
+
+    $ htpasswd -c .htpasswd username
+
+---
+
+# HTTP Token Authentication
+
+---
+
+# HTTP Token Authentication
+
+Requests are authenticated through a **token**.
+
+Each user possesses a **unique token**, retrievable on that user’s settings
+page. Rather than entering username/password information, **users just key in
+their token**.
+
+Most of the time, this token will be passed in the query string of an URL:
+
+    http://example.org/?token=3dZR23REFERGfe
+
+But you can also use the `Authorization` header:
+
+    Authorization: Token token="3dZR23REFERGfe"
+
+**Low security**, but requires a more active role from the user. Security can
+also be reinforced through SSL/TLS.
+
+Can be useful when you need to secure a private API, because it is really
+**easy to implement** such a mechanism.
+
+---
+
+# Form Based Authentication
+
+---
+
+# Form Based Authentication
+
+It refers to the notion of a user being presented with an editable **form to
+fill in and submit** in order to log in to some system or service.
+
+As a user, you visit a web page that **prompts you for a username and password**.
+If authentication is successful, then under the covers you are granted a unique
 cookie, which your web browser sends with each subsequent request.
 
 It just looks like you logged in and now the site works, but under the covers it
-is quite different from Basic
+is quite different from _Basic_.
 
-Credentials are sent in clear text if you don't rely on SSL to create an
+Credentials are **sent in plaintext** if you don't rely on SSL to create an
 encrypted tunnel between the client and server.
 
 ---
 
-# HTTP Digest
+# The Form Authentication Flow
+
+<br />
+
+![](../images/form_authentication.png)
+
+<br />
+
+<small>Source: [Single Sign On (SSO) for cross-domain ASP.NET applications: Part-I
+- The design blue print](http://www.codeproject.com/Articles/106439/Single-Sign-On-SSO-for-cross-domain-ASP-NET-applic).</small>
+
+---
+
+# HTTP Digest Authentication
+
+---
+
+# HTTP Digest Authentication
 
 HTTP Digest authentication ([RFC 2069](http://tools.ietf.org/html/rfc2069), and
-[RFC 2617](http://tools.ietf.org/html/rfc2617)) encrypts the password using a
-one-way hash so it's impossible to reverse-engineer even if SSL is not used.
+[RFC 2617](http://tools.ietf.org/html/rfc2617)) **encrypts the password using a
+one-way hash** so it's impossible to reverse-engineer even if SSL is not used.
 
-It is an application of MD5 cryptographic hashing with usage of nonce values to
-prevent replay attacks.
+It is an **application of MD5 cryptographic hashing with usage of nonce values to
+prevent replay attacks**.
 
 However, it still must be implemented by the browser and can't be designed in to
 a nice UI.
@@ -159,15 +235,20 @@ checked by performing the same calculation.
 
 # WSSE Username Token
 
-WSSE is a family of open security specifications for web services, specifically
-SOAP web services. However, the Username Token algorithm is not SOAP-specific.
+---
+
+# WSSE Username Token
+
+**W**eb **S**ervices **SE**curity (WSSE) is a family of open security
+specifications for web services, specifically SOAP web services.
+
+However, the **Username Token algorithm** is not SOAP-specific.
 
 The benefits of WSSE are:
 
 * Username / Password encryption;
 * Safe guarding against replay attacks;
 * No web server configuration required.
-
 
 ---
 
@@ -200,7 +281,7 @@ the client knows his password.
 
 ---
 
-# Open ID
+# OpenID
 
 OpenID is a **safe**, **faster**, and **easier** way to log in to web sites.
 
@@ -220,11 +301,12 @@ The OpenID protocol **does not rely on a central authority** to authenticate a
 user's identity.
 
 OpenID authentication is now used and provided by several large websites.
-Providers include Google, Yahoo!, PayPal, BBC, AOL, MySpace, IBM, Steam, etc.
+
+Providers include _Google_, _Yahoo!_, _PayPal_, _BBC_, _MySpace_, _Steam_, etc.
 
 ---
 
-# In-Depth With Open ID
+# In-Depth With OpenID
 
 An **end-user** is the entity that wants to assert a particular identity.
 
@@ -242,12 +324,27 @@ which is the URL or XRI chosen by the end-user to name the end-user's identity.
 
 An Identity provider provides the OpenID authentication.
 
-> XRIs are a new form of Internet identifier designed specifically for
-> cross-domain digital identity.
+> eXtensible Identifier Resources are a new form of Internet identifier designed
+> specifically for cross-domain digital identity.
 
 ---
 
-# The Open ID Scenario
+# OpenID Overview
+
+<br />
+
+![](../images/openid_overview.jpg)
+
+<br />
+<br />
+<br />
+<br />
+
+<small>Source: [OpenID and Rails: Authentication 2.0](http://www.devx.com/opensource/Article/37692).</small>
+
+---
+
+# The OpenID Flow
 
 Assuming a user wants to access his account on `example.com`.
 
@@ -266,27 +363,34 @@ Finally, `example.com` allows the user to access his account.
 
 ---
 
+# The OpenID Flow
+
+![](../images/openid_flow.jpg)
+
+<small>Source: [OpenID and Rails: Authentication 2.0](http://www.devx.com/opensource/Article/37692).</small>
+
+---
+
 # Why Should You Use OpenID?
 
-### Faster and easier to sign up
+### Faster And Easier To Sign Up
 
-An OpenID is a way of identifying yourself no matter which web site you visit.
-
-It's like a driver's license for the entire Internet.
-
-
-### Faster and easier to sign in
-
-With OpenID you only have to remember one username and one password.
-
-Now, you might already use one username and one password online, but OpenID lets
-you do this in a secure way. That's because you only give your password to your
-OpenID provider, and then your provider tells the websites you're visiting that
-you are who you say you are.
+An OpenID is **a way of identifying yourself no matter which web site you
+visit**. It's like a **driver's license for the Internet**.
 
 
-### Closer to a unified "web identity"
+### Faster And Easier To Sign In
+
+You only have to remember **one username and one password**.
+
+You might already use one username and one password online, but OpenID lets
+you do this in a **secure way**. That's because **you only give your password to
+your OpenID provider**, and then your provider tells the websites you're visiting
+that you are who you say you are.
+
+
+### Closer To A Unified Web Identity
 
 Once you establish yourself as the person who uses a particular OpenID, whenever
-someone sees your OpenID in use, anywhere on the Internet, they'll know that
+someone sees your OpenID in use, anywhere on the Internet, they will know that
 it's you.
