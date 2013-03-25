@@ -4,47 +4,48 @@
 
 # OAuth
 
-OAuth is an open protocol to allow secure authorization in a simple and standard
-method from web, mobile and desktop applications.
+OAuth is an **open protocol** to allow **secure authorization** in a simple and
+**standard method** from web, mobile and desktop applications.
 
-It is an authorization framework that enables a third-party application to
-obtain limited access to an HTTP service.
+It is an **authorization framework** that enables a third-party application to
+**obtain limited access to an HTTP service**.
 
 ### For Consumer Developers
 
-OAuth is a simple way to publish and interact with protected data. It is also a
-safer and more secure way for people to give you access. We've kept it simple to
-save you time.
+OAuth is a **simple way to publish and interact with protected data**. It is
+also a **safer and more secure way** for people to give you access. We've kept
+it simple to save you time.
 
 ### For Service Provider Developers
 
-If you're storing protected data on your users' behalf, they shouldn't be
-spreading their passwords around the web to get access to it. Use OAuth to give
-your users access to their data while protecting their account credentials.
+If you are **storing protected data** on your users' behalf, they **should not
+be spreading their passwords** around the web to get access to it. Use OAuth to
+give your users **access to their data while protecting their account
+credentials**.
 
 ---
 
 # History
 
-The idea came from Twitter in November 2006.
+The idea came from **Twitter** in November 2006.
 
 A discussion group was created in April 2007, including some Google folks.
 
-The OAuth Core 1.0 specification was declared final in December 2007.
+The **OAuth Core 1.0 specification** was declared final in December 2007.
 
-Version 1.0 revision A of the OAuth Core protocol was issued to address a
-session fixation security flaw in June 2009. In the meantime, Twitter released a
-delegated user authentication solution, called "Sign-In With Twitter".
+Version **1.0 revision A** of the OAuth Core protocol was issued to **address a
+session fixation security flaw** in June 2009. In the meantime, Twitter released
+a delegated user authentication solution, called _Sign-In With Twitter_.
 
-In April 2010, the OAuth 1.0 Protocol was published as an informational [RFC
+In April 2010, the OAuth 1.0 Protocol was **published** as an informational [RFC
 5849](http://tools.ietf.org/html/rfc5849). It replaces the OAuth Core 1.0
 Revision A specification.
 
 Since August 31, 2010, all third party Twitter applications have been required
 to use OAuth.
 
-OAuth 2.0, the next evolution of the OAuth protocol, which is not backward
-compatible with OAuth 1.0, was expected by the end of 2010. However, it was
+**OAuth 2.0**, the next evolution of the OAuth protocol, which is **not backward
+compatible with OAuth 1.0**, was expected by the end of 2010. However, it was
 published as [RFC 6749](http://tools.ietf.org/html/rfc6749) in October 2012.
 
 ---
@@ -59,9 +60,9 @@ In July 2012, he resigned his role of lead author, and removed his name from the
 specification. Some people did the same, and Dick Hardt took over the editor
 role to publish the RFC.
 
-OAuth 2.0 doesn't support signature, encryption, channel binding, or client
-verification. It relies completely on SSL for some degree of confidentiality and
-server authentication.
+**OAuth 2.0 doesn't support signature, encryption, channel binding, or client
+verification**. It **relies completely on SSL** for some degree of
+confidentiality and server authentication.
 
 OAuth 2.0 has had numerous security flaws exposed in implementations. The
 protocol itself has been described as inherently insecure by security experts
@@ -86,37 +87,30 @@ suggestion of two web applications sharing your data.
 
 ---
 
-# Pseudo-Authentication Using OAuth
-
-![](http://upload.wikimedia.org/wikipedia/commons/thumb/3/32/OpenIDvs.Pseudo-AuthenticationusingOAuth.svg/512px-OpenIDvs.Pseudo-AuthenticationusingOAuth.svg.png)
-
-<small>Source: [http://en.wikipedia.org/wiki/OAuth](http://en.wikipedia.org/wiki/OAuth).</small>
-
----
-
 # OAuth 1.0a
 
 ---
 
 # OAuth 1.0a - Terminology
 
-**User:** a user who has an account of the Service Provider and tries to use the
-Consumer.
+**User:** a user who has an account of the **Service Provider** and tries to use
+the **Consumer**.
 
 **Service Provider:** service that provides an API that uses OAuth
 (`api.example.org`).
 
 **Consumer:** an application or web service that wants to use functions of the
-Service Provider through OAuth authentication (`your.application.org`).
+**Service Provider** through OAuth authentication (`your.application.org`).
 
 This application must be known by the **Service Provider**, and owns two keys:
 a **Consumer Key** and a **Consumer Secret Key**.
 
-**Request Token:** a value that a Consumer uses to be authorized by the Service
-Provider. After completing authorization, it is exchanged for an Access Token.
+**Request Token:** a value that a **Consumer** uses to be authorized by the
+**Service Provider**. After completing authorization, it is exchanged for an
+**Access Token**.
 
-**Access Token:** a value that contains a key for the Consumer to access the
-resource of the Service Provider.
+**Access Token:** a value that contains a key for the **Consumer** to access the
+resource of the **Service Provider**.
 
 ---
 
@@ -125,8 +119,8 @@ resource of the Service Provider.
 ### In A Nutshell
 
 1. You ask for a **Request Token** and specify your **callback**;
-2. You direct the user to the authorization screen;
-3. You receive a callback at the URL you specified;
+2. You direct the user to the **Authorization Screen**;
+3. You receive a token at the URL you specified;
 4. You ask for an **Access Token**;
 5. You make API calls!
 
@@ -163,20 +157,20 @@ _Easy, isn't it?_
 
 # Getting A Request Token (2/2)
 
-`oauth_callback` is the URL of Consumer that will be redirected after the
+`oauth_callback` is the URL of the Consumer that will be redirected after the
 Service Provider completes authentication. If the Consumer is not a web
-application and has no address to redirect, the lower-case Out Of Band (`oob`)
-is used as the value.
+application and has no address to redirect, the lower-case **Out Of Band**
+(`oob`) is used as the value.
 
 `oauth_consumer_key` is the Consumer Key provided to you by the application
 when you signed up.
 
-`oauth_nonce` is a random string.
+`oauth_nonce` is a random string (Number Once).
 
 `oauth_signature` is the signature value for the request.
 
 `oauth_signature_method` is the signature method that you use to sign the
-request. This can be PLAINTEXT, HMAC-SHA1 or RSA-SHA1.
+request. This can be `PLAINTEXT`, `HMAC-SHA1` or `RSA-SHA1`.
 
 `oauth_timestamp` is the current timestamp of the request.
 
@@ -189,14 +183,19 @@ request. This can be PLAINTEXT, HMAC-SHA1 or RSA-SHA1.
 ### 1. Collect all request parameters
 
 All parameters related to OAuth which start with `oauth_` except for
-`oauth_signature` should be collected. If parameters are used in the POST body,
-they also should be collected.
+`oauth_signature` should be collected.
+
+If parameters are used in the `POST` body, they also should be collected.
 
 ### 2. Normalize the parameters
 
-Sort all parameters in alphabetical order and apply URL encoding (RFC 3986) to
-each key and value. List the results of URL encoding as `<key>=<value>` format
-and insert `&` between each pair. Apply URL encoding to the entire result again.
+Sort all parameters in **alphabetical order** and **apply URL encoding** (RFC
+3986) to each key and value.
+
+List the results of URL encoding as `<key>=<value>` format and insert `&`
+between each pair.
+
+Apply URL encoding to the entire result again.
 
 ---
 
@@ -206,16 +205,17 @@ and insert `&` between each pair. Apply URL encoding to the entire result again.
 
 Combine the HTTP method name (GET or POST), the HTTP URL address called by the
 Consumer (except for parameters), and the normalized parameter by using `&`. The
-combination becomes
+combination becomes:
 
     [GET|POST] + & + [URL string except for parameters] +
         & + [Normalized Parameter]"
 
 ### 4. Generating a Key
 
-Encrypt the string generated at stage 3 using the Consumer Secret Key. This
-Consumer Secret Key is obtained when the Consumer has registered in Service
-Provider. Using the encryption method such as `HMAC-SHA1`, generate the final
+**Encrypt the string** generated at stage 3 **using the Consumer Secret Key**.
+
+This Consumer Secret Key is obtained when the Consumer has registered in Service
+Provider. Using the encryption method, such as `HMAC-SHA1`, generates the final
 `oauth_signature`.
 
 ---
@@ -246,8 +246,8 @@ The `oauth_callback_confirmed` value just gives you confirmation that the
 
 # The Authorization Step
 
-Now that you have a **Request Token**, you can build the URL to authorize the
-user:
+Now that you have a **Request Token**, you can build the **URL to authorize the
+user**:
 
     https://api.example.org/oauth/v1/authorize?oauth_token=z4ezdgj
 
@@ -256,12 +256,12 @@ to authorize your application to access his private data:
 
 ![](https://developers.google.com/apps-script/images/twitter-oauth-authorization.jpg)
 
-When the user authorizes your application, he will either be sent back to the
-`oauth_callback` specified in the previous step, or presented with a PIN code
-(Out Of Band authentication).
+When the user authorizes your application, he will either be **sent back** to the
+`oauth_callback` specified in the previous step, or **presented with a PIN
+code** (Out Of Band authentication).
 
 At this time, the Service Provider passes new `oauth_token` and `oauth_verifier`
-to the Consumer. These values are used to request the Access Token.
+to the Consumer. These values are used to request the **Access Token**.
 
 ---
 
@@ -278,16 +278,16 @@ to the Consumer. These values are used to request the Access Token.
         oauth_verifier=svmhhd
 
 `oauth_signature` is now signed with the signing key obtained by concatenating
-the Consumer Secret and `oauth_token_secret` value separated by an `&`
+the Consumer Secret Key and `oauth_token_secret` value separated by an `&`
 character:
 
     url_escape(consumer_key)&url_escape(oauth_token_secret)
 
 Generating the `oauth_signature` value follows the same steps described before,
-just the signing key is different.
+**just the signing key is different**.
 
 The `oauth_verifier` value has been passed through `oauth_callback` when
-requesting the Request Token.
+requesting the **Request Token**.
 
 ---
 
@@ -306,8 +306,8 @@ requesting the Request Token.
 
 The `oauth_token` value is now your **Access Token**.
 
-The `oauth_token_secret` will be used for signing all requests on behalf of the
-member.
+The `oauth_token_secret` will be used for **signing all requests on behalf of
+the user**.
 
 ---
 
@@ -341,7 +341,7 @@ You will either get the result you expected or a `401`.
 
 ---
 
-# ![](http://cdn.memegenerator.net/instances/400x/30176386.jpg)
+# ![](../images/yes.jpg)
 
 ---
 
@@ -353,22 +353,22 @@ You will either get the result you expected or a `401`.
 
 **xAuth is still OAuth**.
 
-xAuth provides a way for desktop and mobile applications to exchange a username
-and password for an OAuth access token. Once the access token is retrieved,
-xAuth-enabled developers should dispose of the login and password corresponding
-to the user.
+xAuth provides **a way** for desktop and mobile applications **to exchange a
+username and password for an OAuth access token**. Once the Access Token is
+retrieved, xAuth-enabled developers should dispose of the login and password
+corresponding to the user.
 
-xAuth access is restricted to approved applications.
+xAuth access should be **restricted to approved applications**.
 
 ### In A Nutshell
 
-It is all about requesting an access token directly, without using a **Request
+It is all about **requesting an Access Token directly, without using a Request
 Token**. You have to submit `x_auth_*` parameters in addition to the
 conventional `oauth_*` parameters:
 
-* `x_auth_username` the login credential of the User the client is obtaining a token
+* `x_auth_username` the login credential of the user the client is obtaining a token
 on behalf of;
-* `x_auth_password` the password credential of the User the client is obtaining a
+* `x_auth_password` the password credential of the user the client is obtaining a
 token on behalf of.
 
 ---
@@ -379,12 +379,12 @@ token on behalf of.
 
 # Roles
 
-OAuth 2.0 defines the following roles of users and applications:
+OAuth 2.0 defines the following **roles** of users and applications:
 
-* Resource Owner: the user;
-* Resource Server: the API;
-* Client Application: the third-party application;
-* Authorization Server: often the same as the API server;
+* **Resource Owner**: the user;
+* **Resource Server**: the API;
+* **Client Application**: the third-party application;
+* **Authorization Server**: often the same as the API server;
 
 ![](http://tutorials.jenkov.com/images/oauth2/overview-roles.png)
 
@@ -393,24 +393,26 @@ OAuth 2.0 defines the following roles of users and applications:
 # Prerequisites
 
 Before you can begin the OAuth process, you must first **register a new
-application**. You usually register basic information such as application name,
-website, a logo, etc. In addition, you must register a redirect URI to be used
-for redirecting users to for web server, browser-based, or mobile apps.
+application**. You usually register **basic information** such as application
+name, website, a logo, etc. In addition, you must register a **redirect URI**
+to be used for redirecting users to for web server, browser-based, or mobile
+applications.
 
 ### Redirect URIs
 
 The authorization server will only redirect users to a registered URI, which
-helps prevent some attacks. Any HTTP redirect URIs must be protected with TLS
-security, so the service will only redirect to URIs beginning with `https://`.
-This prevents tokens from being intercepted during the authorization process.
+helps prevent some attacks. Any HTTP redirect URIs must be protected with **TLS
+security**, so the service will only redirect to URIs beginning with `https://`.
+This **prevents tokens from being intercepted** during the authorization process.
 
 ### Client ID and Secret
 
 After registering your app, you will receive a **client ID** and a **client
 secret**. The client ID is considered public information, and is used to build
-login URLs, or included in Javascript source code on a page. The client secret
-must be kept confidential. If a deployed app cannot keep the secret confidential,
-such as Javascript or native apps, then the secret is not used.
+login URLs, or included in JavaScript source code on a page. **The client secret
+must be kept confidential**. If a deployed application **cannot keep the secret
+confidential**, such as JavaScript or native apps, then the **secret is not
+used**.
 
 ---
 
@@ -424,8 +426,9 @@ The authorization grant is given to a client application by the resource owner,
 in cooperation with the authorization server associated with the resource
 server.
 
-The OAuth 2.0 specification lists different types of authorization grants. Each
-type has different security characteristics. The authorization grant types are:
+The OAuth 2.0 specification lists **different types of authorization grants**.
+Each type has different security characteristics. The **authorization grant
+types** are:
 
 * Authorization Code
 * Implicit
@@ -446,7 +449,7 @@ a button to connect his GitHub account for instance:
         redirect_uri=https://example.com/auth&
         scopes=repo
 
-User visits the authorization page:
+User visits the **Authorization Page**:
 
 ![](../images/oauth_prompt.png)
 
@@ -454,15 +457,15 @@ User visits the authorization page:
 
 # Scopes
 
-Scopes let you specify exactly what type of access you need.
+**Scopes** let you specify exactly what type of access you need.
 
 Scopes limit access for OAuth tokens. They do not grant any additional permission
 beyond that which the user already has.
 
-The OAuth 2.0 specification does not define any value, it is left up to the
+The OAuth 2.0 specification **does not define any value**, it is left up to the
 implementor.
 
-Scopes should be expressed as a list of space-delimited strings:
+Scopes should be expressed as a **list of space-delimited strings**:
 
     scopes=s1 s2 s3
 
@@ -483,7 +486,7 @@ In practice, many people use comma-separators instead:
 
 # Authorization Code (2/3)
 
-On success, user is redirected back to your site with auth code:
+On success, user is **redirected back to your site with auth code**:
 
     https://example.com/auth?code=AUTH_CODE_HERE
 
@@ -507,7 +510,7 @@ POST body:
     client_id=YOUR_CLIENT_ID&
     client_secret=YOUR_CLIENT_SECRET
 
-Your server gets the following response:
+Response:
 
     {
         "access_token":"e72e16c7e42f292c6912e7710c838347ae178b4a",
@@ -537,9 +540,9 @@ a button to connect his GitHub account for instance:
         redirect_uri=https://example.com/auth&
         scopes=repo
 
-The `response_type` is different: **token**.
+Look at the `response_type`, it is **token** now.
 
-User visits the authorization page:
+User visits the **Authorization Page**:
 
 ![](../images/oauth_prompt.png)
 
@@ -567,8 +570,8 @@ client secret is not used, and browser makes API requests directly.
 
 # Password Grant
 
-Password grant is only appropriate for trusted clients, most likely first-party
-applications only. It should be used for **your** services only.
+Password grant is only appropriate for **trusted clients**, most likely
+first-party applications only. It should be used for **your** services only.
 
     POST https://github.com/oauth/token
 
@@ -636,7 +639,7 @@ The access token can be in the query string as well as in an HTTP header:
 
 # Refresh Token
 
-It is all about getting a new access token using a refresh token.
+It is all about getting a new **Access Token** using a **Refresh Token**.
 
     POST https://github.com/oauth/token
 
@@ -661,22 +664,22 @@ Response:
 
 ### Security
 
-OAuth 2.0 replaces signatures with requiring HTTPS for all communications
+OAuth 2.0 **replaces signatures with requiring HTTPS for all communications**
 between browsers, clients and the API. It is easier for developers, but it is
 less secure in its essence. OAuth 1.0 is more secure than OAuth 2.0 as all
 requests are signed.
 
 ### User Experience
 
-OAuth 2.0 supports a better user experience for native applications, and supports
-extending the protocol to provide compatibility with future device requirements.
-OAuth 1.0 is not good at offering a nice user experience for mobile
-applications, that is why xAuth has been created.
+OAuth 2.0 supports a **better user experience** for native applications, and
+supports extending the protocol to provide compatibility with future device
+requirements. OAuth 1.0 is not good at offering a nice user experience for
+mobile applications, that is why xAuth has been created.
 
 ### Scalability
 
-OAuth 2 supports the separation of the roles of obtaining user authorization and
-handling API calls. Larger providers needing this scalability are free to
+OAuth 2 supports the **separation of the roles** of obtaining user authorization
+and handling API calls. Larger providers needing this scalability are free to
 implement it as such, and smaller providers can use the same server for both
 roles if they wish.
 
@@ -684,4 +687,8 @@ roles if they wish.
 
 # Final Thoughts
 
-...
+<br />
+<br />
+<br />
+
+![](http://hueniverse.com/wp-content/uploads/2012/07/oauthdead.jpg)
