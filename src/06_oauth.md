@@ -281,7 +281,7 @@ to the Consumer. These values are used to request the **Access Token**.
 the Consumer Secret Key and `oauth_token_secret` value separated by an `&`
 character:
 
-    url_escape(consumer_key)&url_escape(oauth_token_secret)
+    url_escape(consumer_secret_key)&url_escape(oauth_token_secret)
 
 Generating the `oauth_signature` value follows the same steps described before,
 **just the signing key is different**.
@@ -427,14 +427,13 @@ in cooperation with the authorization server associated with the resource
 server.
 
 The OAuth 2.0 specification lists **different types of authorization grants**.
-Each type has different security characteristics. The **authorization grant
-types** are:
+Each type has different security characteristics. The most used **authorization
+Grant Types** are:
 
 * Authorization Code
 * Implicit
-* Resource Owner Password Credentials
-* Client Credentials
 * Password
+* Client Credentials
 
 ---
 
