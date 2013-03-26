@@ -1,7 +1,7 @@
 LicPro-Security
 ===============
 
-Here are the slides of my (web) security lectures at IUT de Clermont-Fd.
+Here are the slides from my (web) security lectures at IUT de Clermont-Fd.
 
 
 Installation
