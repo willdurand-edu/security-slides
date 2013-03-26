@@ -177,7 +177,7 @@ Message Authentication Code.
 ### TLS Handshake Protocol
 
 Allow the server and the client to speak the same language, with a determined
-encrpytion algorithm and determined encryption keys.
+encryption algorithm and determined encryption keys.
 
 Use the same handshake protocol procedure as SSL.
 
