@@ -79,7 +79,7 @@ Non exhaustive list:
 
 # Knowledge Factors
 
-_Something the user knowns._
+_Something the user knows._
 
 Knowledge factors is the most common form of authentication used. In this form
 user is required to prove the knowledge of a secret in order to authenticate.
