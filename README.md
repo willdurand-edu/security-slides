@@ -1,7 +1,8 @@
 Security
 ========
 
-Here are the slides from William Durand's (web) security lectures at IUT de Clermont-Fd.
+Here are the slides from [William Durand](http://github.com/willdurand)'s
+(web) security lectures at IUT de Clermont-Fd.
 
 
 Installation
