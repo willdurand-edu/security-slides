@@ -1,7 +1,7 @@
-LicPro-Security
-===============
+Security
+========
 
-Here are the slides from my (web) security lectures at IUT de Clermont-Fd.
+Here are the slides from William Durand's (web) security lectures at IUT de Clermont-Fd.
 
 
 Installation
@@ -9,7 +9,7 @@ Installation
 
 Get the code:
 
-    git clone git://github.com/willdurand/licpro-security.git --recursive
+    git clone git://github.com/licpro/security-slides.git --recursive
 
 Install [landslide](https://github.com/adamzap/landslide#installation), then
 build the presentation:
