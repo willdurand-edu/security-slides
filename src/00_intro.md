@@ -29,7 +29,8 @@ Worked at:
 
 # What Is Security?
 
-**Computer security** is information security as applied to computers and networks.
+**Computer security** is information security as applied to computers and
+networks.
 
 **Information security** is the practice of defending information from
 unauthorized access, use, disclosure, disruption, modification, perusal,
@@ -42,3 +43,5 @@ inspection, recording or destruction.
 * Authentication
 * Authentication Mechanisms
 * Authorization
+* Web Security
+* IP tracking
