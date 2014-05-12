@@ -189,6 +189,25 @@ TLS 1.0 is "SSL 3.1".
 
 ---
 
+# ![](../images/heartbleed.png)
+
+---
+
+# The Heartbleed Bug
+
+The Heartbleed Bug is a **serious vulnerability** in the popular **OpenSSL**
+cryptographic software library.
+
+This weakness allows **stealing the information protected**, under normal
+conditions, by the SSL/TLS encryption used to secure the Internet. SSL/TLS
+provides communication security and privacy over the Internet for applications
+such as web, email, instant messaging (IM) and some virtual private networks
+(VPNs).
+
+> More information at: [http://heartbleed.com/](http://heartbleed.com/)
+
+---
+
 # HTTPS
 
 ---
