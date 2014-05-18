@@ -208,7 +208,7 @@ checked by performing the same calculation.
 
 <br />
 
-![](http://www.cgisecurity.com/owasp/html/images/HTTP_digest.png)
+![](../images/http-digest.png)
 
 ---
 
@@ -475,7 +475,7 @@ without having to be reauthenticated.
 
 <br />
 
-![](http://edc.tversu.ru/elib/inf/0041/images/fig18_02_0.jpg)
+![](../images/kerberos.jpg)
 
 ---
 

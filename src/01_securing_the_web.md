@@ -10,7 +10,7 @@
 
 ---
 
-# What Is Encryption?<br /><br />![](http://imgs.xkcd.com/comics/code_talkers.png)
+# What Is Encryption?<br /><br />![](../images/code-talkers.png)
 
 ---
 
@@ -25,7 +25,7 @@ However, decryption keys (private keys) are secret.
 
 The most common asymmetric encryption algorithm is **RSA**.
 
-![](http://www.howtogeek.com/wp-content/uploads/2010/11/asymmetric_encryption_diagram.png)
+![](../images/asymmetric_encryption_diagram.png)
 
 ---
 
@@ -40,7 +40,7 @@ Both the sender and the receiver need the same key to communicate.
 
 Popular symmetric algorithms: Blowfish, AES, Twofish.
 
-![](http://www.howtogeek.com/wp-content/uploads/2010/11/symmetric_encryption_diagram2.png)
+![](../images/symmetric_encryption_diagram2.png)
 
 ---
 
@@ -131,7 +131,7 @@ consistency of the message.
 
 # SSL Handshake
 
-![](http://publib.boulder.ibm.com/infocenter/wmqv6/v6r0/topic/com.ibm.mq.csqzas.doc/sy10660a.gif)
+![](../images/ssl.gif)
 
 <small>Source: http://publib.boulder.ibm.com/infocenter/wmqv6/v6r0/topic/com.ibm.mq.csqzas.doc/sy10660_.htm_</small>
 

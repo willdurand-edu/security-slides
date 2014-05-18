@@ -1,4 +1,4 @@
-# ![](http://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Oauth_logo.svg/220px-Oauth_logo.svg.png)
+# ![](../images/oauth.png)
 
 ---
 
@@ -133,7 +133,7 @@ _Easy, isn't it?_
 
 # OAuth 1.0a - Authentication Process
 
-![](http://oauth.net/core/diagram.png)
+![](../images/oauth-diagram.png)
 
 ---
 
@@ -254,7 +254,7 @@ user**:
 It is your job to send the user to this page. It asks the user whether he wants
 to authorize your application to access his private data:
 
-![](https://developers.google.com/apps-script/images/twitter-oauth-authorization.jpg)
+![](../images/twitter-oauth-authorization.jpg)
 
 When the user authorizes your application, he will either be **sent back** to the
 `oauth_callback` specified in the previous step, or **presented with a PIN
@@ -311,7 +311,7 @@ the user**.
 
 ---
 
-# ![](http://www.troll.me/images/challenge-accepted/achievement-unlocked.jpg)
+# ![](../images/achievement-unlocked.jpg)
 
 ---
 
@@ -386,7 +386,7 @@ OAuth 2.0 defines the following **roles** of users and applications:
 * **Client Application**: the third-party application;
 * **Authorization Server**: often the same as the API server;
 
-![](http://tutorials.jenkov.com/images/oauth2/overview-roles.png)
+![](../images/overview-roles.png)
 
 ---
 
@@ -479,7 +479,7 @@ In practice, many people use comma-separators instead:
 <br />
 <br />
 
-![](http://www.stateofsearch.com/wp-content/uploads/2011/01/facebook-permissions.jpg)
+![](../images/facebook-permissions.jpg)
 
 ---
 
@@ -524,7 +524,7 @@ Or if there wars an error:
 
 # Example: Facebook's OAuth Flow
 
-![](http://dragon.ak.fbcdn.net/cfs-ak-ash4/84991/914/165799420225798-/server-side-diagram.png)
+![](../images/server-side-diagram.png)
 
 ---
 
@@ -690,4 +690,4 @@ roles if they wish.
 <br />
 <br />
 
-![](http://hueniverse.com/wp-content/uploads/2012/07/oauthdead.jpg)
+![](../images/oauthdead.jpg)
