@@ -50,6 +50,9 @@ containing a `WWW-Authenticate` HTTP header:
 
     WWW-Authenticate: Basic realm="insert realm"
 
+> Q: What does "realm" standfor?<br>
+> A: [http://en.wikipedia.org/wiki/Realm_(disambiguation)](http://en.wikipedia.org/wiki/Realm_(disambiguation))
+
 ---
 
 # HTTP Basic - Client
