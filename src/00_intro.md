@@ -4,8 +4,6 @@
 
 # Who Is Speaking?
 
-<br />
-
 ### William DURAND
 
 PhD student at Michelin / LIMOS
@@ -18,12 +16,15 @@ Worked at:
 * [e-TF1](http://www.tf1.fr/) (Paris, France);
 * [Prizee.com](http://prizee.com) (Clermont-Fd, France).
 
-<br />
-<br />
+<br>
 
-[twitter.com/couac](https://twitter.com/couac)
- | [github.com/willdurand](https://github.com/willdurand)
- | [williamdurand.fr](http://www.williamdurand.fr)
+<p class="center">
+    <i class="fa fa-twitter"></i> <a href="https://twitter.com/couac">twitter.com/couac</a>
+    &nbsp;|&nbsp;
+    <i class="fa fa-github"></i> <a href="https://github.com/willdurand">github.com/willdurand</a>
+    &nbsp;|&nbsp;
+    <i class="fa fa-globe"></i> <a href="http://www.williamdurand.fr">williamdurand.fr</a>
+</p>
 
 ---
 
@@ -43,5 +44,5 @@ inspection, recording or destruction.
 * Authentication
 * Authentication Mechanisms
 * Authorization
-* Web Security
+* Web Security 101
 * IP tracking

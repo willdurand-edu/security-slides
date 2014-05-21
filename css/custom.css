@@ -1,8 +1,46 @@
+/*
+ * Background:  #CDF029
+ * Titles:      #465457
+ * Text:        #384111
+ * Border imgs: #465457
+ * Blockquotes: #FFFFFF
+ */
+@import url(http://fonts.googleapis.com/css?family=Droid+Sans);
+
 body {
-    font-size: 24px;
+    font-size: 1.5em;
+    font-family: 'Droid Sans', sans-serif;
 }
 
-.slide.future {display:none;}
+p, li {
+    text-align: justify;
+    line-height: 1.5em;
+}
+
+body,
+.slides,
+.slide.current {
+    color: #384111;
+    background-color: #CDF029;
+}
+
+div.slide h1,
+div.slide h2,
+div.slide h3,
+div.slide h4,
+div.slide h5,
+div.slide h6 {
+    color: #465457;
+    font-weight: bold;
+}
+
+div.slide h1 {
+    margin: auto;
+}
+
+.slide.future {
+    display:none;
+}
 
 .slide header:only-child h1 {
     font-size: 70px;
@@ -12,31 +50,167 @@ body {
     text-align: center;
 }
 
+blockquote:before {
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1.5em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    content: "\f02d";
+    margin-right: 10px;
+    float: left;
+}
+
 blockquote {
-    text-indent: 0;
     margin: auto;
-    border: 1px solid #DDE;
-    background: ghostWhite;
-    padding: 10px;
+    text-indent: 0;
+    background: #FFFFFF;
+    padding: 10px 10px 7px 10px;
+    clear: both;
 }
 
 blockquote p:before,
-blockquote p:after {
+blockquote p:after,
+blockquote.no-before-icon:before {
     content: none;
+}
+
+blockquote.no-before-icon i {
+    margin-right: 10px;
+    line-height: 1.5em;
+    float: left;
+}
+
+blockquote.quote p,
+blockquote.info p {
+    display: inline;
+}
+
+blockquote.quote:before,
+blockquote.info:before {
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1.5em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    margin-right: 10px;
+    display: inline-block;
+}
+
+blockquote.quote:before {
+    content: "\f10d";
+}
+
+blockquote.info:before {
+    content: "\f05a";
+}
+
+blockquote.quote:after {
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1.5em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    content: "\f10e";
+    margin-left: 10px;
+    display: inline-block;
 }
 
 a,
 a:visited {
-    color: blue;
+    color: #384111;
+}
+
+a:hover,
+a:focus {
+    color: #465457;
 }
 
 pre {
-    padding: 5px;
-    font-size: 20px;
+    padding: 5px 10px 5px 10px;
+    font-size: 75%;
     font-family: Courier, monospace;
 }
 
-small {
-    font-style: italic;
-    font-size: 16px;
+code {
+    padding: 2px 6px 3px 6px;
+    font-size: 85%;
+    font-family: Courier, monospace;
+    background-color: #FFFFFF;
+}
+
+strong, b {
+    font-weight: bolder;
+    font-size: 110%;
+}
+
+li {
+    padding: 5px 0;
+}
+
+ol li p {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+h1 {
+    margin-top: 10px;
+}
+
+h1 img {
+    margin-top: 30px;
+}
+
+img {
+    border-radius: 3px;
+    box-shadow: 3px 3px 10px 5px #465457;
+}
+
+.no-border h1 img {
+    margin-top: auto;
+}
+
+.no-border img {
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.sidebar,
+.sidebar a,
+.sidebar a:visited {
+    color: #000;
+}
+
+#toc img {
+    display: none;
+}
+
+.slides .color-red h1 {
+    color: #C82D26;
+    font-size: 8em !important;
+}
+
+table {
+    margin-bottom: 3%;
+}
+
+.more-on-this-later {
+    display: none;
+}
+
+.highlight {
+    background-color: #FFFFFF;
+}
+
+.highlight pre {
+    font-size: 80%;
+    font-family: Courier, monospace;
+}
+
+
+.white-border img {
+    border: 5px solid white;
 }

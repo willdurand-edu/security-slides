@@ -133,7 +133,8 @@ consistency of the message.
 
 ![](../images/ssl.gif)
 
-<small>Source: http://publib.boulder.ibm.com/infocenter/wmqv6/v6r0/topic/com.ibm.mq.csqzas.doc/sy10660_.htm_</small>
+<center><small>Source: [An overview of the SSL
+handshake](http://publib.boulder.ibm.com/infocenter/wmqv6/v6r0/topic/com.ibm.mq.csqzas.doc/sy10660_.htm)</small></center>
 
 ---
 
@@ -191,6 +192,8 @@ TLS 1.0 is "SSL 3.1".
 
 # ![](../images/heartbleed.png)
 
+.fx: no-border
+
 ---
 
 # The Heartbleed Bug
@@ -226,7 +229,6 @@ URLs begin with `http://` and use port `80` by default.
 
 HTTPS encrypts and decrypts user page requests as well as the pages that are
 returned by the web server.
-
 The use of HTTPS protects against **eavesdropping** and **man-in-the-middle**
 attacks:
 

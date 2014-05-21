@@ -1,12 +1,13 @@
 # ![](../images/oauth.png)
 
+.fx: no-border
+
 ---
 
 # OAuth
 
 OAuth is an **open protocol** to allow **secure authorization** in a simple and
 **standard method** from web, mobile and desktop applications.
-
 It is an **authorization framework** that enables a third-party application to
 **obtain limited access to an HTTP service**.
 
@@ -29,9 +30,8 @@ credentials**.
 
 The idea came from **Twitter** in November 2006.
 
-A discussion group was created in April 2007, including some Google folks.
-
-The **OAuth Core 1.0 specification** was declared final in December 2007.
+A discussion group was created in April 2007, including some Google folks.  The
+**OAuth Core 1.0 specification** was declared final in December 2007.
 
 Version **1.0 revision A** of the OAuth Core protocol was issued to **address a
 session fixation security flaw** in June 2009. In the meantime, Twitter released
@@ -63,13 +63,12 @@ role to publish the RFC.
 **OAuth 2.0 doesn't support signature, encryption, channel binding, or client
 verification**. It **relies completely on SSL** for some degree of
 confidentiality and server authentication.
-
 OAuth 2.0 has had numerous security flaws exposed in implementations. The
 protocol itself has been described as inherently insecure by security experts
 and a primary contributor to the specification stated that implementation
 mistakes are almost inevitable.
 
-> A must-read: [OAuth 2.0 and the Road to
+> Must Read: [OAuth 2.0 and the Road to
 Hell](http://hueniverse.com/2012/07/oauth-2-0-and-the-road-to-hell/).
 
 ---
@@ -93,23 +92,22 @@ suggestion of two web applications sharing your data.
 
 # OAuth 1.0a - Terminology
 
-**User:** a user who has an account of the **Service Provider** and tries to use
+**User** — a user who has an account of the **Service Provider** and tries to use
 the **Consumer**.
 
-**Service Provider:** service that provides an API that uses OAuth
+**Service Provider** — service that provides an API that uses OAuth
 (`api.example.org`).
 
-**Consumer:** an application or web service that wants to use functions of the
+**Consumer** — an application or web service that wants to use functions of the
 **Service Provider** through OAuth authentication (`your.application.org`).
+This application must be known by the **Service Provider**, and owns two keys: a
+**Consumer Key** and a **Consumer Secret Key**.
 
-This application must be known by the **Service Provider**, and owns two keys:
-a **Consumer Key** and a **Consumer Secret Key**.
-
-**Request Token:** a value that a **Consumer** uses to be authorized by the
+**Request Token** — a value that a **Consumer** uses to be authorized by the
 **Service Provider**. After completing authorization, it is exchanged for an
 **Access Token**.
 
-**Access Token:** a value that contains a key for the **Consumer** to access the
+**Access Token** — a value that contains a key for the **Consumer** to access the
 resource of the **Service Provider**.
 
 ---
@@ -135,6 +133,8 @@ _Easy, isn't it?_
 
 ![](../images/oauth-diagram.png)
 
+.fx: no-border
+
 ---
 
 # Getting A Request Token (1/2)
@@ -142,8 +142,8 @@ _Easy, isn't it?_
 <br />
 <br />
 <br />
-<br />
 
+    !text
     GET https://api.example.org/oauth/v1/request_token?
         oauth_callback=http://your.application.org/oauth&
         oauth_consumer_key=WEhGuJZWUasHg&
@@ -207,6 +207,7 @@ Combine the HTTP method name (GET or POST), the HTTP URL address called by the
 Consumer (except for parameters), and the normalized parameter by using `&`. The
 combination becomes:
 
+    !text
     [GET|POST] + & + [URL string except for parameters] +
         & + [Normalized Parameter]"
 
@@ -225,13 +226,12 @@ Provider. Using the encryption method, such as `HMAC-SHA1`, generates the final
 <br />
 <br />
 
+    !text
     oauth_token=z4ezdgj&
     oauth_token_secret=47ba47e0048b7f2105db67df18ffd24bd072688a&
     oauth_expires_in=3600&
     oauth_callback_confirmed=true
 
-<br />
-<br />
 <br />
 
 The `oauth_token` value is now your **Request Token**.
@@ -249,6 +249,7 @@ The `oauth_callback_confirmed` value just gives you confirmation that the
 Now that you have a **Request Token**, you can build the **URL to authorize the
 user**:
 
+    !text
     https://api.example.org/oauth/v1/authorize?oauth_token=z4ezdgj
 
 It is your job to send the user to this page. It asks the user whether he wants
@@ -256,17 +257,20 @@ to authorize your application to access his private data:
 
 ![](../images/twitter-oauth-authorization.jpg)
 
-When the user authorizes your application, he will either be **sent back** to the
-`oauth_callback` specified in the previous step, or **presented with a PIN
+When the user authorizes your application, he will either be **sent back** to
+the `oauth_callback` specified in the previous step, or **presented with a PIN
 code** (Out Of Band authentication).
 
 At this time, the Service Provider passes new `oauth_token` and `oauth_verifier`
 to the Consumer. These values are used to request the **Access Token**.
 
+.fx: no-border
+
 ---
 
 # Requesting An Access Token
 
+    !text
     GET https://api.example.org/oauth/v1/access_token?
         oauth_consumer_key=WEhGuJZWUasHg&
         oauth_nonce=8B9SpFé&
@@ -281,6 +285,7 @@ to the Consumer. These values are used to request the **Access Token**.
 the Consumer Secret Key and `oauth_token_secret` value separated by an `&`
 character:
 
+    !text
     url_escape(consumer_secret_key)&url_escape(oauth_token_secret)
 
 Generating the `oauth_signature` value follows the same steps described before,
@@ -296,11 +301,11 @@ requesting the **Request Token**.
 <br />
 <br />
 
+    !text
     oauth_token=A%3DqVDHXBE8bRwPoXV9eq4vAtNX_8KVca9&
     oauth_token_secret=c5a9684d3a3aa22aa051308987219efb8d6982fc&
     oauth_expires_in=3600
 
-<br />
 <br />
 <br />
 
@@ -315,7 +320,7 @@ the user**.
 
 ---
 
-<h1 style="color: red">Not Yet!</h1>
+<h1 style="color: red">Not Yet!<br><small style="color: #000;font-size: 20%">(Yeah, it hurts my eyes too...)</small></h1>
 
 ---
 
@@ -324,6 +329,7 @@ the user**.
 Create an HTTP `Authorization` header with all parameters + the
 `oauth_signature` generated as usual:
 
+    !text
     GET http://api.example.org/users/me
     Authorization: OAuth
         realm="example.org",
@@ -360,8 +366,6 @@ corresponding to the user.
 
 xAuth access should be **restricted to approved applications**.
 
-### In A Nutshell
-
 It is all about **requesting an Access Token directly, without using a Request
 Token**. You have to submit `x_auth_*` parameters in addition to the
 conventional `oauth_*` parameters:
@@ -390,7 +394,7 @@ OAuth 2.0 defines the following **roles** of users and applications:
 
 ---
 
-# Prerequisites
+# Prerequisites (1/2)
 
 Before you can begin the OAuth process, you must first **register a new
 application**. You usually register **basic information** such as application
@@ -404,6 +408,10 @@ The authorization server will only redirect users to a registered URI, which
 helps prevent some attacks. Any HTTP redirect URIs must be protected with **TLS
 security**, so the service will only redirect to URIs beginning with `https://`.
 This **prevents tokens from being intercepted** during the authorization process.
+
+---
+
+# Prerequisites (2/2)
 
 ### Client ID and Secret
 
@@ -442,6 +450,7 @@ Grant Types** are:
 In your application, the user will perform the following request, by clicking on
 a button to connect his GitHub account for instance:
 
+    !text
     GET https://github.com/login/oauth/authorize?
         response_type=code&
         client_id=YOUR_CLIENT_ID&
@@ -451,6 +460,8 @@ a button to connect his GitHub account for instance:
 User visits the **Authorization Page**:
 
 ![](../images/oauth_prompt.png)
+
+.fx: no-border
 
 ---
 
@@ -466,10 +477,12 @@ implementor.
 
 Scopes should be expressed as a **list of space-delimited strings**:
 
+    !text
     scopes=s1 s2 s3
 
 In practice, many people use comma-separators instead:
 
+    !text
     scopes=s1,s2,s3
 
 ---
@@ -487,10 +500,12 @@ In practice, many people use comma-separators instead:
 
 On success, user is **redirected back to your site with auth code**:
 
+    !text
     https://example.com/auth?code=AUTH_CODE_HERE
 
 On error, user is redirected back to your site with error code:
 
+    !text
     https://example.com/auth?error=access_denied
 
 ---
@@ -499,10 +514,12 @@ On error, user is redirected back to your site with error code:
 
 Server exchanges auth code for an **Access Token**:
 
+    !text
     POST https://github.com/login/oauth/access_token
 
 POST body:
 
+    !text
     grant_type=authorization_code&
     code=CODE_FROM_QUERY_STRING&
     redirect_uri=REDIRECT_URI&
@@ -511,20 +528,24 @@ POST body:
 
 Response:
 
+    !json
     {
         "access_token":"e72e16c7e42f292c6912e7710c838347ae178b4a",
         "token_type":"bearer"
     }
 
-Or if there wars an error:
-
+    // Or if an error has occured:
     { "error": "invalid_request" }
 
 ---
 
 # Example: Facebook's OAuth Flow
 
+<br>
+
 ![](../images/server-side-diagram.png)
+
+.fx: no-border
 
 ---
 
@@ -533,13 +554,14 @@ Or if there wars an error:
 ### Client account hijacking by connecting attacker's provider account (CSRF attack)
 
 In step _2/3_, provider returns `code` by redirecting the user-agent to:
-`https://example.com/auth?code=AUTH_CODE_HERE`.
+
+    !text
+    https://example.com/auth?code=AUTH_CODE_HERE
 
 In step _3/3_, the client must send `code` along with client credentials and
-`redirect_uri` to obtain `access_token`.
-
-If the client implementation doesn't use `state` parameter to **mitigate CSRF**,
-we can easily connect our provider account to the victim's client account.
+`redirect_uri` to obtain `access_token`.  If the client implementation doesn't
+use `state` parameter to **mitigate CSRF**, we can easily connect our provider
+account to the victim's client account.
 
 ![](../images/oauth_csrf_vulnerability.png)
 
@@ -582,8 +604,9 @@ creation.
 > [How I hacked Github
 again.](http://homakov.blogspot.fr/2014/02/how-i-hacked-github-again.html)
 
-> More OAuth issues in this [OAuth Security
-> Cheatsheet](http://www.oauthsecurity.com/).
+---
+
+# More OAuth issues in this<br>[OAuth Security Cheatsheet](http://www.oauthsecurity.com/)
 
 ---
 
@@ -592,6 +615,7 @@ again.](http://homakov.blogspot.fr/2014/02/how-i-hacked-github-again.html)
 In your application, the user will perform the following request, by clicking on
 a button to connect his GitHub account for instance:
 
+    !text
     GET https://github.com/login/oauth/authorize?
         response_type=token&
         client_id=YOUR_CLIENT_ID&
@@ -604,6 +628,8 @@ User visits the **Authorization Page**:
 
 ![](../images/oauth_prompt.png)
 
+.fx: no-border
+
 ---
 
 # Implicit Grant (2/2)
@@ -611,12 +637,14 @@ User visits the **Authorization Page**:
 On success, user is redirected back to your site with the access token in the
 **fragment**:
 
+    !text
     https://example.com/auth#token=ACCESS_TOKEN
 
 Token is only available to the browser since it is in the fragment.
 
 On error, user is redirected back to your site with error code:
 
+    !text
     https://example.com/auth#error=access_denied
 
 ### Usage
@@ -631,18 +659,21 @@ client secret is not used, and browser makes API requests directly.
 Password grant is only appropriate for **trusted clients**, most likely
 first-party applications only. It should be used for **your** services only.
 
+    !text
     POST https://github.com/oauth/token
 
 POST body:
 
-        grant_type=password&
-        username=USERNAME&
-        password=PASSWORD&
-        client_id=YOUR_CLIENT_SECRET&
-        client_secret=YOUR_CLIENT_SECRET
+    !text
+    grant_type=password&
+    username=USERNAME&
+    password=PASSWORD&
+    client_id=YOUR_CLIENT_SECRET&
+    client_secret=YOUR_CLIENT_SECRET
 
 Response:
 
+    !text
     {
         "access_token": "e72e16c7e42f292c6912e7710c838347ae178b4a",
         "token_type": "bearer",
@@ -654,16 +685,19 @@ Response:
 
 # Client Credentials Grant
 
+    !text
     POST https://github.com/oauth/token
 
 POST body:
 
+    !text
     grant_type=client_credentials&
     client_id=YOUR_CLIENT_ID&
     client_secret=YOUR_CLIENT_SECRET
 
 Response:
 
+    !text
     {
         "access_token": "e72e16c7e42f292c6912e7710c838347ae178b4a",
         "token_type": "bearer",
@@ -686,10 +720,12 @@ Application access.
 
 The access token allows you to make requests to the API on a behalf of a user:
 
+    !text
     GET https://api.github.com/users?access_token=...
 
 The access token can be in the query string as well as in an HTTP header:
 
+    !text
     GET https://api.github.com/users
     Authorization: Bearer ...
 
@@ -699,10 +735,12 @@ The access token can be in the query string as well as in an HTTP header:
 
 It is all about getting a new **Access Token** using a **Refresh Token**.
 
+    !text
     POST https://github.com/oauth/token
 
 POST body:
 
+    !text
     grant_type=refresh_token&
     refresh_token=el2132eEdzFEfrfdc&
     client_id=YOUR_CLIENT_ID&
@@ -710,6 +748,7 @@ POST body:
 
 Response:
 
+    !text
     {
         "access_token": "ERfegrfEZGrbosfef2E3Rfezfoefezf",
         "expires_in": 3600,
@@ -718,7 +757,7 @@ Response:
 
 ---
 
-# Differences From OAuth 1.0
+# Differences From OAuth 1.0 (1/2)
 
 ### Security
 
@@ -733,6 +772,10 @@ OAuth 2.0 supports a **better user experience** for native applications, and
 supports extending the protocol to provide compatibility with future device
 requirements. OAuth 1.0 is not good at offering a nice user experience for
 mobile applications, that is why xAuth has been created.
+
+---
+
+# Differences From OAuth 1.0 (2/2)
 
 ### Scalability
 
@@ -750,3 +793,5 @@ roles if they wish.
 <br />
 
 ![](../images/oauthdead.jpg)
+
+.fx: no-border white-border

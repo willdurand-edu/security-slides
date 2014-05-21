@@ -43,4 +43,4 @@ controlled by the system.
 
 ![](../images/authentication-vs-authorization.jpg)
 
-<small>Source: [http://people.duke.edu/~rob/kerberos/authvauth.html](http://people.duke.edu/~rob/kerberos/authvauth.html)</small>
+<center><small>Source: [http://people.duke.edu/~rob/kerberos/authvauth.html](http://people.duke.edu/~rob/kerberos/authvauth.html)</small></center>

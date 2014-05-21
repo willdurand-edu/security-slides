@@ -28,6 +28,7 @@ The oldest and **most common format for web authentication**.
 
 Requests are authenticated in the form of the user’s username and password:
 
+    !text
     https://username:password@www.example.org/
 
 **Low security**, but can be reinforced through the use of SSL/TLS.
@@ -48,10 +49,14 @@ it can send a request for authentication.
 This request should be sent using the HTTP `401 Unauthorized` response code
 containing a `WWW-Authenticate` HTTP header:
 
+    !text
     WWW-Authenticate: Basic realm="insert realm"
 
-> Q: What does "realm" standfor?<br>
-> A: [http://en.wikipedia.org/wiki/Realm_(disambiguation)](http://en.wikipedia.org/wiki/Realm_(disambiguation))
+<br>
+<blockquote class="no-before-icon">
+    <p>Q: What does "realm" standfor?</p>
+    <p>A: <a href="http://en.wikipedia.org/wiki/Realm_(disambiguation)">http://en.wikipedia.org/wiki/Realm_(disambiguation)</a></p>
+</blockquote>
 
 ---
 
@@ -60,7 +65,8 @@ containing a `WWW-Authenticate` HTTP header:
 When the client wants to send the server authentication credentials it may use
 the `Authorization` header:
 
-    Authorization: Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ==
+    !text
+    Authorization: Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ=
 
 The `Authorization` header is constructed as follows:
 
@@ -82,6 +88,7 @@ Apache can be configured through a `.htaccess` file that allows to:
 
 ### Example
 
+    !text
     AuthUserFile /path/to/.htpasswd
     AuthName "Restricted Area"
     AuthType Basic
@@ -89,6 +96,7 @@ Apache can be configured through a `.htaccess` file that allows to:
 
 Add username/password using the following command:
 
+    !text
     $ htpasswd -c .htpasswd username
 
 ---
@@ -104,19 +112,19 @@ Requests are authenticated through a **token**.
 Each user possesses a **unique token**, retrievable on that user’s settings
 page. Rather than entering username/password information, **users just key in
 their token**.
-
 Most of the time, this token will be passed in the query string of an URL:
 
+    !text
     http://example.org/?token=3dZR23REFERGfe
 
 But you can also use the `Authorization` header:
 
+    !text
     Authorization: Token token="3dZR23REFERGfe"
 
 **Low security**, but requires a more active role from the user. Security can
 also be reinforced through SSL/TLS.
-
-Can be useful when you need to secure a private API, because it is really
+It can be useful when you need to secure a private API, because it is really
 **easy to implement** such a mechanism.
 
 ---
@@ -143,6 +151,7 @@ a nice UI.
 
 A client requests a page:
 
+    !text
     GET /skynet.html HTTP/1.0
     Host: localhost
 
@@ -150,13 +159,14 @@ The server responds with the `401 Unauthorized` response code, providing the
 authentication `realm` and a **randomly-generated**, **single-use value**
 called a `nonce`:
 
+    !text
     HTTP/1.0 401 Unauthorized
     Server: HTTPd/0.9
     Date: Sat, 19 Apr 2011 20:11:00 GMT
     WWW-Authenticate: Digest realm="a realm",
                              qop="auth,auth-int",
-                             nonce="dcd98b7102dd2f0e8b11d0f600bfb0c093",
-                             opaque="5ccc069c403ebaf9f0171e9517f40e41"
+                             nonce="dcd90f0e8b11d0f600bfb0c093",
+                             opaque="5cccebaf9f0171e9517f40e41"
     ...
 
 At this point, the browser will present the authentication realm to the user
@@ -170,20 +180,22 @@ Once a username and password have been supplied, the **client re-sends the same
 request** but adds an **authentication header** that includes the **response
 code**:
 
+    !text
     GET /skynet.html HTTP/1.0
     Host: localhost
     Authorization: Digest username="sarah",
                           realm="a realm",
-                          nonce="dcd98b7102dd2f0e8b11d0f600bfb0c093",
+                          nonce="dcd90f0e8b11d0f600bfb0c093",
                           uri="/skynet.html",
                           qop=auth,
                           nc=00000001,
                           cnonce="0a4f113b",
-                          response="6629fae49393a05397450978507c4ef1",
-                          opaque="5ccc069c403ebaf9f0171e9517f40e41"
+                          response="6629ae49393a05397450974ef1",
+                          opaque="5cccebaf9f0171e9517f40e41"
 
 The server accepts the authentication and the page is returned:
 
+    !text
     HTTP/1.0 200 OK
     ...
 
@@ -242,10 +254,8 @@ encrypted tunnel between the client and server.
 
 ![](../images/form_authentication.png)
 
-<br />
-
-<small>Source: [Single Sign On (SSO) for cross-domain ASP.NET applications: Part-I
-- The design blue print](http://www.codeproject.com/Articles/106439/Single-Sign-On-SSO-for-cross-domain-ASP-NET-applic).</small>
+<center><small>Source: [Single Sign On (SSO) for cross-domain ASP.NET
+applications](http://www.codeproject.com/Articles/106439/Single-Sign-On-SSO-for-cross-domain-ASP-NET-applic).</small></center>
 
 ---
 
@@ -288,15 +298,18 @@ The benefits of WSSE Username Token are:
 
 The client requests a page:
 
+    !text
     GET /somewhere HTTP/1.1
 
 The server returns a `401 Unauthorized` status code:
 
+    !text
     HTTP/1.1 401 Unauthorized
     WWW-Authenticate: WSSE realm="foo", profile="UsernameToken"
 
 The client sends the same request with his authentication credentials:
 
+    !text
     Authorization: WSSE profile="UsernameToken"
     X-WSSE: UsernameToken Username="bob",
             PasswordDigest="quR/EWLAV4xLf9Zqyw4pDmfV9OY=",
@@ -310,6 +323,8 @@ the client knows his password.
 ---
 
 # ![](../images/openid.png)
+
+.fx: no-border
 
 ---
 
@@ -330,9 +345,8 @@ then use those accounts as the basis for signing on to any website which accepts
 OpenID authentication.
 
 The OpenID protocol **does not rely on a central authority** to authenticate a
-user's identity.
-
-OpenID authentication is now used and provided by several large websites.
+user's identity. OpenID authentication is now used and provided by several
+large websites.
 
 Providers include _Google_, _Yahoo!_, _PayPal_, _BBC_, _MySpace_, _Steam_, etc.
 
@@ -349,30 +363,28 @@ An **identity provider**, or **OpenID Provider** (OP) is a service that
 specializes in registering OpenID URLs or e**X**tensible **R**esource
 **I**dentifiers (XRIs).
 
-OpenID enables an end-user to communicate with a relying party.
-
-This communication is done through the **exchange of an identifier or OpenID**,
-which is the URL or XRI chosen by the end-user to name the end-user's identity.
+OpenID enables an end-user to communicate with a relying party.  This
+communication is done through the **exchange of an identifier or OpenID**, which
+is the URL or XRI chosen by the end-user to name the end-user's identity.
 
 An Identity provider provides the OpenID authentication.
 
-> eXtensible Identifier Resources are a new form of Internet identifier designed
-> specifically for cross-domain digital identity.
+<blockquote class="no-before-icon">
+    <i class="fa fa-lightbulb-o"></i>
+    <p>eXtensible Identifier Resources are a new form of Internet identifier designed
+    specifically for cross-domain digital identity.</p>
+</blockquote>
 
 ---
 
 # OpenID Overview
 
 <br />
+<br />
 
 ![](../images/openid_overview.jpg)
 
-<br />
-<br />
-<br />
-<br />
-
-<small>Source: [OpenID and Rails: Authentication 2.0](http://www.devx.com/opensource/Article/37692).</small>
+<center><small>Source: [OpenID and Rails: Authentication 2.0](http://www.devx.com/opensource/Article/37692).</small></center>
 
 ---
 
@@ -399,7 +411,7 @@ Finally, `example.com` allows the user to access his account.
 
 ![](../images/openid_flow.jpg)
 
-<small>Source: [OpenID and Rails: Authentication 2.0](http://www.devx.com/opensource/Article/37692).</small>
+<center><small>Source: [OpenID and Rails: Authentication 2.0](http://www.devx.com/opensource/Article/37692).</small></center>
 
 ---
 
@@ -410,16 +422,13 @@ Finally, `example.com` allows the user to access his account.
 An OpenID is **a way of identifying yourself no matter which web site you
 visit**. It's like a **driver's license for the Internet**.
 
-
 ### Faster And Easier To Sign In
 
-You only have to remember **one username and one password**.
-
-You might already use one username and one password online, but OpenID lets
-you do this in a **secure way**. That's because **you only give your password to
-your OpenID provider**, and then your provider tells the websites you're visiting
-that you are who you say you are.
-
+You only have to remember **one username and one password**.  You might already
+use one username and one password online, but OpenID lets you do this in a
+**secure way**. That's because **you only give your password to your OpenID
+provider**, and then your provider tells the websites you're visiting that you
+are who you say you are.
 
 ### Closer To A Unified Web Identity
 
@@ -455,6 +464,12 @@ When the Kerberos server is **down**, **no one can log in**.
 Suppose you want to access a server on another computer. You know that this
 server requires a Kerberos "ticket" before it will honor your request.
 
+![](../images/kerberos.jpg)
+
+---
+
+# How Does Kerberos Work? (2/2)
+
 To get your ticket, you first **request authentication** from the
 **Authentication Server** (AS).
 
@@ -474,20 +489,11 @@ without having to be reauthenticated.
 
 ---
 
-# How Does Kerberos Work? (2/2)
-
-<br />
-
-![](../images/kerberos.jpg)
-
----
-
 # Remote Authentication Dial-In User Service (RADIUS)
 
 A **networking protocol** that **provides centralized Authentication**,
 Authorization, and Accounting (AAA) management for computers to connect and use
 a network service.
-
 RADIUS is a client/server protocol that runs in the application layer, using UDP
 as transport. It is described in [RFC 2865](http://www.ietf.org/rfc/rfc2865.txt).
 
