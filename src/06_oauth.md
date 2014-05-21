@@ -528,6 +528,65 @@ Or if there wars an error:
 
 ---
 
+# Potential Security Issues (1/2)
+
+### Client account hijacking by connecting attacker's provider account (CSRF attack)
+
+In step _2/3_, provider returns `code` by redirecting the user-agent to:
+`https://example.com/auth?code=AUTH_CODE_HERE`.
+
+In step _3/3_, the client must send `code` along with client credentials and
+`redirect_uri` to obtain `access_token`.
+
+If the client implementation doesn't use `state` parameter to **mitigate CSRF**,
+we can easily connect our provider account to the victim's client account.
+
+![](../images/oauth_csrf_vulnerability.png)
+
+---
+
+# Potential Security Issues (1/2)
+
+### Client account hijacking by connecting attacker's provider account (CSRF attack)
+
+#### Remediation
+
+Before sending user to the provider generate a random nonce and save it in
+cookies or session. When user is back make sure `state` you received is equal
+one from cookies.
+
+> [The Most Common OAuth2
+> Vulnerability](http://homakov.blogspot.com/2012/07/saferweb-most-common-oauth2.html)
+
+---
+
+# Potential Security Issues (2/2)
+
+### Account hijacking by leaking authorization code
+
+OAuth documentation makes it clear that providers must check the first
+`redirect_uri` is equal `redirect_uri` the client uses to obtain an
+`access_token`.
+
+Find a leaking page on the client's domain, insert cross domain image or a link
+to your website, then use this page as `redirect_uri`. When your victim will
+load crafted URL it will send him to `leaking_page?code=CODE` and victim's
+user-agent will expose the code in the `Referrer` header.
+
+#### Remediation
+
+Flexible `redirect_uri` is a bad practice. But if you need it, store
+`redirect_uri` for every code you issue and verify it on `access_token`
+creation.
+
+> [How I hacked Github
+again.](http://homakov.blogspot.fr/2014/02/how-i-hacked-github-again.html)
+
+> More OAuth issues in this [OAuth Security
+> Cheatsheet](http://www.oauthsecurity.com/).
+
+---
+
 # Implicit Grant (1/2)
 
 In your application, the user will perform the following request, by clicking on
