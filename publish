@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+TMP_DIR=/tmp/edu-security-slides
+CONFIG_FILE=config.cfg
+INDEX_FILE=index.html
+
+git stash
+
+landslide $CONFIG_FILE
+
+rm -rf $TMP_DIR
+mkdir $TMP_DIR
+mv $INDEX_FILE $TMP_DIR/index.html
+cp -R themes/ $TMP_DIR
+
+git checkout gh-pages
+
+mv $TMP_DIR/* .
+git add index.html themes/avalanche/avalanche/
+git commit -m "Publish slides (`date`)"
+
+git push origin gh-pages
+
+git clean -fdx
+
+git checkout master
+
+git stash apply
