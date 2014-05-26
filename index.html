@@ -4617,19 +4617,19 @@ suggestion of two web applications sharing your data.</p></section>
             <header><h1>OAuth 1.0a - Terminology</h1></header>
             
             
-            <section><p><strong>User</strong> — a user who has an account of the <strong>Service Provider</strong> and tries to use
-the <strong>Consumer</strong>.</p>
+            <section><p><strong>User</strong> — a user who has an account on the <strong>Service Provider</strong>,and tries to
+use the <strong>Consumer</strong>.</p>
 <p><strong>Service Provider</strong> — service that provides an API that uses OAuth
 (<code>api.example.org</code>).</p>
 <p><strong>Consumer</strong> — an application or web service that wants to use functions of the
-<strong>Service Provider</strong> through OAuth (<code>your.application.org</code>).
-This application must be known by the <strong>Service Provider</strong>, and owns two keys: a
-<strong>Consumer Key</strong> and a <strong>Consumer Secret Key</strong>.</p>
+<strong>Service Provider</strong> through OAuth (<code>your.application.org</code>).  This application
+must be known by the <strong>Service Provider</strong>, and owns two keys: a <strong>Consumer Key</strong>
+and a <strong>Consumer Secret Key</strong>.</p>
 <p><strong>Request Token</strong> — a value that a <strong>Consumer</strong> uses to be authorized by the
 <strong>Service Provider</strong>. After completing authorization, it is exchanged for an
 <strong>Access Token</strong>.</p>
-<p><strong>Access Token</strong> — a value that contains a key for the <strong>Consumer</strong> to access the
-resource of the <strong>Service Provider</strong>.</p></section>
+<p><strong>Access Token</strong> — a value that contains a key for the <strong>Consumer</strong> to access
+the resource of the <strong>Service Provider</strong>.</p></section>
             
           </div>
           <div class="presenter_notes">
@@ -4665,7 +4665,7 @@ resource of the <strong>Service Provider</strong>.</p></section>
 <ol>
 <li>You ask for a <strong>Request Token</strong> and specify your <strong>callback</strong>;</li>
 <li>You direct the user to the <strong>Authorization Screen</strong>;</li>
-<li>You receive a token at the URL you specified;</li>
+<li>You receive a token at the URL you have specified;</li>
 <li>You ask for an <strong>Access Token</strong>;</li>
 <li>You make API calls!</li>
 </ol>
@@ -4782,15 +4782,15 @@ resource of the <strong>Service Provider</strong>.</p></section>
             
             
             <section><p><code>oauth_callback</code> is the URL of the Consumer that will be redirected after the
-Service Provider completes authentication. If the Consumer is not a web
-application and has no address to redirect, the lower-case <strong>Out Of Band</strong>
-(<code>oob</code>) is used as the value.</p>
-<p><code>oauth_consumer_key</code> is the Consumer Key provided to you by the application
-when you signed up.</p>
+Service Provider has completed authentication. If the Consumer is not a web
+application and has no redirection URL, the lower-case <strong>Out Of Band</strong> (<code>oob</code>)
+is used as value.</p>
+<p><code>oauth_consumer_key</code> is the Consumer Key provided to you by the Service Provider
+when you registered your application with it.</p>
 <p><code>oauth_nonce</code> is a random string (Number Once).</p>
 <p><code>oauth_signature</code> is the signature value for the request.</p>
 <p><code>oauth_signature_method</code> is the signature method that you use to sign the
-request. This can be <code>PLAINTEXT</code>, <code>HMAC-SHA1</code> or <code>RSA-SHA1</code>.</p>
+request, such as <code>PLAINTEXT</code>, <code>HMAC-SHA1</code> or <code>RSA-SHA1</code>.</p>
 <p><code>oauth_timestamp</code> is the current timestamp of the request.</p>
 <p><code>oauth_version</code> is always <code>1.0</code>.</p></section>
             
@@ -4827,10 +4827,10 @@ request. This can be <code>PLAINTEXT</code>, <code>HMAC-SHA1</code> or <code>RSA
             <section><h3>1. Collect all request parameters</h3>
 <p>All parameters related to OAuth which start with <code>oauth_</code> except for
 <code>oauth_signature</code> should be collected.</p>
-<p>If parameters are used in the <code>POST</code> body, they also should be collected.</p>
+<p>If parameters are used in the <code>POST</code> body, they should also be collected.</p>
 <h3>2. Normalize the parameters</h3>
-<p>Sort all parameters in <strong>alphabetical order</strong> and <strong>apply URL encoding</strong> (RFC
-3986) to each key and value.</p>
+<p>Sort all parameters in <strong>alphabetical order</strong> and <strong>apply URL encoding</strong> to each
+key and value (<a href="http://tools.ietf.org/html/rfc3986">RFC 3986</a>).</p>
 <p>List the results of URL encoding as <code>&lt;key&gt;=&lt;value&gt;</code> format and insert <code>&amp;</code>
 between each pair.</p>
 <p>Apply URL encoding to the entire result again.</p></section>
@@ -4867,17 +4867,16 @@ between each pair.</p>
             
             <section><h3>3. Create a Signature Base String</h3>
 <p>Combine the HTTP method name (GET or POST), the HTTP URL address called by the
-Consumer (except for parameters), and the normalized parameter by using <code>&amp;</code>. The
-combination becomes:</p>
-<div class="highlight"><pre>[GET|POST] + &amp; + [URL string except for parameters] +
-    &amp; + [Normalized Parameter]&quot;
+Consumer (except for parameters), and the normalized parameters by using <code>&amp;</code>.
+The combination becomes:</p>
+<div class="highlight"><pre>[GET|POST] + &amp; + [URL string without params] + &amp; + [Normalized Parameters]&quot;
 </pre></div>
 
 <h3>4. Generating a Key</h3>
 <p><strong>Encrypt the string</strong> generated at stage 3 <strong>using the Consumer Secret Key</strong>.</p>
-<p>This Consumer Secret Key is obtained when the Consumer has registered in Service
-Provider. Using the encryption method, such as <code>HMAC-SHA1</code>, generates the final
-<code>oauth_signature</code>.</p></section>
+<p>This Consumer Secret Key is obtained when the Consumer has registered with the
+Service Provider. Using the encryption method, such as <code>HMAC-SHA1</code>, generates
+the final <code>oauth_signature</code>.</p></section>
             
           </div>
           <div class="presenter_notes">
@@ -4919,8 +4918,8 @@ oauth_callback_confirmed=true
 
 <p><br /></p>
 <p>The <code>oauth_token</code> value is now your <strong>Request Token</strong>.</p>
-<p>The <code>oauth_token_secret</code> will be used for signing your request for getting an
-<strong>Access Token</strong>.</p>
+<p>The <code>oauth_token_secret</code> will be used for signing your request in order to get
+an <strong>Access Token</strong>.</p>
 <p>The <code>oauth_callback_confirmed</code> value just gives you confirmation that the
 <code>oauth_callback</code> parameter you provided has been recognized.</p></section>
             
@@ -4962,9 +4961,9 @@ user</strong>:</p>
 <p>It is your job to send the user to this page. It asks the user whether he wants
 to authorize your application to access his private data:</p>
 <p><img alt="" src="data:image/jpeg;base64,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" /></p>
-<p>When the user authorizes your application, he will either be <strong>sent back</strong> to
+<p>When the user authorizes your application, he will be either <strong>sent back</strong> to
 the <code>oauth_callback</code> specified in the previous step, or <strong>presented with a PIN
-code</strong> (Out Of Band authentication).</p>
+code</strong> (Out Of Band).</p>
 <p>At this time, the Service Provider passes new <code>oauth_token</code> and <code>oauth_verifier</code>
 to the Consumer. These values are used to request the <strong>Access Token</strong>.</p>
 </section>
@@ -5017,7 +5016,7 @@ character:</p>
 </pre></div>
 
 <p>Generating the <code>oauth_signature</code> value follows the same steps described before,
-<strong>just the signing key is different</strong>.</p>
+<strong>except that the signing key is different</strong> !</p>
 <p>The <code>oauth_verifier</code> value has been passed through <code>oauth_callback</code> when
 requesting the <strong>Request Token</strong>.</p></section>
             
@@ -5263,10 +5262,10 @@ Authorization: OAuth
             
             <section><p><strong>xAuth is still OAuth</strong>.</p>
 <p>xAuth provides <strong>a way</strong> for desktop and mobile applications <strong>to exchange a
-username and password for an OAuth access token</strong>. Once the Access Token is
-retrieved, xAuth-enabled developers should dispose of the login and password
-corresponding to the user.</p>
-<p>xAuth access should be <strong>restricted to approved applications</strong>.</p>
+username and password for an OAuth access token</strong>. Once the Access Token has
+been retrieved, xAuth-enabled developers should dispose of the login and
+password corresponding to the user.</p>
+<p>xAuth access should be <strong>restricted to approved applications only</strong>.</p>
 <p>It is all about <strong>requesting an Access Token directly, without using a Request
 Token</strong>. You have to submit <code>x_auth_*</code> parameters in addition to the
 conventional <code>oauth_*</code> parameters:</p>
@@ -5383,9 +5382,10 @@ to be used for redirecting users to for web server, browser-based, or mobile
 applications.</p>
 <h3>Redirect URIs</h3>
 <p>The authorization server will only redirect users to a registered URI, which
-helps prevent some attacks. Any HTTP redirect URIs must be protected with <strong>TLS
-security</strong>, so the service will only redirect to URIs beginning with <code>https://</code>.
-This <strong>prevents tokens from being intercepted</strong> during the authorization process.</p></section>
+helps prevent some attacks (in theory...). Any HTTP redirect URIs must be
+protected with <strong>TLS security</strong>, so the service will only redirect to URIs
+beginning with <code>https://</code>.  This <strong>prevents tokens from being intercepted</strong>
+during the authorization process.</p></section>
             
           </div>
           <div class="presenter_notes">
@@ -5507,7 +5507,7 @@ a button to connect his GitHub account for instance:</p>
     response_type=code&amp;
     client_id=YOUR_CLIENT_ID&amp;
     redirect_uri=https://example.com/auth&amp;
-    scopes=repo
+    scopes=profile
 </pre></div>
 
 <p>User visits the <strong>Authorization Page</strong>:</p>
@@ -5544,7 +5544,7 @@ a button to connect his GitHub account for instance:</p>
             <header><h1>Scopes</h1></header>
             
             
-            <section><p><strong>Scopes</strong> let you specify exactly what type of access you need.</p>
+            <section><p><strong>Scopes</strong> let you specify exactly which level of access you need.</p>
 <p>Scopes limit access for OAuth tokens. They do not grant any additional permission
 beyond that which the user already has.</p>
 <p>The OAuth 2.0 specification <strong>does not define any value</strong>, it is left up to the
@@ -5912,7 +5912,7 @@ a button to connect his GitHub account for instance:</p>
     response_type=token&amp;
     client_id=YOUR_CLIENT_ID&amp;
     redirect_uri=https://example.com/auth&amp;
-    scopes=repo
+    scopes=profile
 </pre></div>
 
 <p>Look at the <code>response_type</code>, it is <strong>token</strong> now.</p>
