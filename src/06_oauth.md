@@ -92,23 +92,23 @@ suggestion of two web applications sharing your data.
 
 # OAuth 1.0a - Terminology
 
-**User** — a user who has an account of the **Service Provider** and tries to use
-the **Consumer**.
+**User** — a user who has an account on the **Service Provider**,and tries to
+use the **Consumer**.
 
 **Service Provider** — service that provides an API that uses OAuth
 (`api.example.org`).
 
 **Consumer** — an application or web service that wants to use functions of the
-**Service Provider** through OAuth (`your.application.org`).
-This application must be known by the **Service Provider**, and owns two keys: a
-**Consumer Key** and a **Consumer Secret Key**.
+**Service Provider** through OAuth (`your.application.org`).  This application
+must be known by the **Service Provider**, and owns two keys: a **Consumer Key**
+and a **Consumer Secret Key**.
 
 **Request Token** — a value that a **Consumer** uses to be authorized by the
 **Service Provider**. After completing authorization, it is exchanged for an
 **Access Token**.
 
-**Access Token** — a value that contains a key for the **Consumer** to access the
-resource of the **Service Provider**.
+**Access Token** — a value that contains a key for the **Consumer** to access
+the resource of the **Service Provider**.
 
 ---
 
@@ -118,7 +118,7 @@ resource of the **Service Provider**.
 
 1. You ask for a **Request Token** and specify your **callback**;
 2. You direct the user to the **Authorization Screen**;
-3. You receive a token at the URL you specified;
+3. You receive a token at the URL you have specified;
 4. You ask for an **Access Token**;
 5. You make API calls!
 
@@ -158,19 +158,19 @@ _Easy, isn't it?_
 # Getting A Request Token (2/2)
 
 `oauth_callback` is the URL of the Consumer that will be redirected after the
-Service Provider completes authentication. If the Consumer is not a web
-application and has no address to redirect, the lower-case **Out Of Band**
-(`oob`) is used as the value.
+Service Provider has completed authentication. If the Consumer is not a web
+application and has no redirection URL, the lower-case **Out Of Band** (`oob`)
+is used as value.
 
-`oauth_consumer_key` is the Consumer Key provided to you by the application
-when you signed up.
+`oauth_consumer_key` is the Consumer Key provided to you by the Service Provider
+when you registered your application with it.
 
 `oauth_nonce` is a random string (Number Once).
 
 `oauth_signature` is the signature value for the request.
 
 `oauth_signature_method` is the signature method that you use to sign the
-request. This can be `PLAINTEXT`, `HMAC-SHA1` or `RSA-SHA1`.
+request, such as `PLAINTEXT`, `HMAC-SHA1` or `RSA-SHA1`.
 
 `oauth_timestamp` is the current timestamp of the request.
 
@@ -185,12 +185,12 @@ request. This can be `PLAINTEXT`, `HMAC-SHA1` or `RSA-SHA1`.
 All parameters related to OAuth which start with `oauth_` except for
 `oauth_signature` should be collected.
 
-If parameters are used in the `POST` body, they also should be collected.
+If parameters are used in the `POST` body, they should also be collected.
 
 ### 2. Normalize the parameters
 
-Sort all parameters in **alphabetical order** and **apply URL encoding** (RFC
-3986) to each key and value.
+Sort all parameters in **alphabetical order** and **apply URL encoding** to each
+key and value ([RFC 3986](http://tools.ietf.org/html/rfc3986)).
 
 List the results of URL encoding as `<key>=<value>` format and insert `&`
 between each pair.
@@ -204,20 +204,19 @@ Apply URL encoding to the entire result again.
 ### 3. Create a Signature Base String
 
 Combine the HTTP method name (GET or POST), the HTTP URL address called by the
-Consumer (except for parameters), and the normalized parameter by using `&`. The
-combination becomes:
+Consumer (except for parameters), and the normalized parameters by using `&`.
+The combination becomes:
 
     !text
-    [GET|POST] + & + [URL string except for parameters] +
-        & + [Normalized Parameter]"
+    [GET|POST] + & + [URL string without params] + & + [Normalized Parameters]"
 
 ### 4. Generating a Key
 
 **Encrypt the string** generated at stage 3 **using the Consumer Secret Key**.
 
-This Consumer Secret Key is obtained when the Consumer has registered in Service
-Provider. Using the encryption method, such as `HMAC-SHA1`, generates the final
-`oauth_signature`.
+This Consumer Secret Key is obtained when the Consumer has registered with the
+Service Provider. Using the encryption method, such as `HMAC-SHA1`, generates
+the final `oauth_signature`.
 
 ---
 
@@ -236,8 +235,8 @@ Provider. Using the encryption method, such as `HMAC-SHA1`, generates the final
 
 The `oauth_token` value is now your **Request Token**.
 
-The `oauth_token_secret` will be used for signing your request for getting an
-**Access Token**.
+The `oauth_token_secret` will be used for signing your request in order to get
+an **Access Token**.
 
 The `oauth_callback_confirmed` value just gives you confirmation that the
 `oauth_callback` parameter you provided has been recognized.
@@ -257,9 +256,9 @@ to authorize your application to access his private data:
 
 ![](../images/twitter-oauth-authorization.jpg)
 
-When the user authorizes your application, he will either be **sent back** to
+When the user authorizes your application, he will be either **sent back** to
 the `oauth_callback` specified in the previous step, or **presented with a PIN
-code** (Out Of Band authentication).
+code** (Out Of Band).
 
 At this time, the Service Provider passes new `oauth_token` and `oauth_verifier`
 to the Consumer. These values are used to request the **Access Token**.
@@ -289,7 +288,7 @@ character:
     url_escape(consumer_secret_key)&url_escape(oauth_token_secret)
 
 Generating the `oauth_signature` value follows the same steps described before,
-**just the signing key is different**.
+**except that the signing key is different** !
 
 The `oauth_verifier` value has been passed through `oauth_callback` when
 requesting the **Request Token**.
@@ -360,11 +359,11 @@ You will either get the result you expected or a `401`.
 **xAuth is still OAuth**.
 
 xAuth provides **a way** for desktop and mobile applications **to exchange a
-username and password for an OAuth access token**. Once the Access Token is
-retrieved, xAuth-enabled developers should dispose of the login and password
-corresponding to the user.
+username and password for an OAuth access token**. Once the Access Token has
+been retrieved, xAuth-enabled developers should dispose of the login and
+password corresponding to the user.
 
-xAuth access should be **restricted to approved applications**.
+xAuth access should be **restricted to approved applications only**.
 
 It is all about **requesting an Access Token directly, without using a Request
 Token**. You have to submit `x_auth_*` parameters in addition to the
@@ -405,9 +404,10 @@ applications.
 ### Redirect URIs
 
 The authorization server will only redirect users to a registered URI, which
-helps prevent some attacks. Any HTTP redirect URIs must be protected with **TLS
-security**, so the service will only redirect to URIs beginning with `https://`.
-This **prevents tokens from being intercepted** during the authorization process.
+helps prevent some attacks (in theory...). Any HTTP redirect URIs must be
+protected with **TLS security**, so the service will only redirect to URIs
+beginning with `https://`.  This **prevents tokens from being intercepted**
+during the authorization process.
 
 ---
 
@@ -455,7 +455,7 @@ a button to connect his GitHub account for instance:
         response_type=code&
         client_id=YOUR_CLIENT_ID&
         redirect_uri=https://example.com/auth&
-        scopes=repo
+        scopes=profile
 
 User visits the **Authorization Page**:
 
@@ -467,7 +467,7 @@ User visits the **Authorization Page**:
 
 # Scopes
 
-**Scopes** let you specify exactly what type of access you need.
+**Scopes** let you specify exactly which level of access you need.
 
 Scopes limit access for OAuth tokens. They do not grant any additional permission
 beyond that which the user already has.
@@ -620,7 +620,7 @@ a button to connect his GitHub account for instance:
         response_type=token&
         client_id=YOUR_CLIENT_ID&
         redirect_uri=https://example.com/auth&
-        scopes=repo
+        scopes=profile
 
 Look at the `response_type`, it is **token** now.
 
