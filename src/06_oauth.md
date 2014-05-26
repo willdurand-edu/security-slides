@@ -99,7 +99,7 @@ the **Consumer**.
 (`api.example.org`).
 
 **Consumer** — an application or web service that wants to use functions of the
-**Service Provider** through OAuth authentication (`your.application.org`).
+**Service Provider** through OAuth (`your.application.org`).
 This application must be known by the **Service Provider**, and owns two keys: a
 **Consumer Key** and a **Consumer Secret Key**.
 
