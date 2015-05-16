@@ -4,7 +4,9 @@
 
 # Who Is Speaking?
 
-### William DURAND
+---
+
+# William DURAND
 
 PhD student at Michelin / LIMOS
 
@@ -16,7 +18,11 @@ Worked at:
 * [e-TF1](http://www.tf1.fr/) (Paris, France);
 * [Prizee.com](http://prizee.com) (Clermont-Fd, France).
 
-<br>
+Open-Source evangelist:
+
+* Lead developer of [Geocoder](http://geocoder-php.org/), and [several other
+  projects](https://github.com/willdurand);
+* (Inactive?) Contributor on Symfony.
 
 <p class="center">
     <i class="fa fa-twitter"></i> <a href="https://twitter.com/couac">twitter.com/couac</a>
@@ -25,6 +31,10 @@ Worked at:
     &nbsp;|&nbsp;
     <i class="fa fa-globe"></i> <a href="http://www.williamdurand.fr">williamdurand.fr</a>
 </p>
+
+---
+
+# [edu@drnd.me](mailto:edu@drnd.me)
 
 ---
 
