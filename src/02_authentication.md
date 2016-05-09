@@ -182,6 +182,18 @@ And generally speaking, everything that uses **one** authentication factor.
 
 ---
 
+# I Have Been Pwned?
+
+<br>
+
+![](../images/pwned.png)
+
+## >> [haveibeenpwned.com](https://haveibeenpwned.com/) <<
+
+.fx: center
+
+---
+
 # Strong Authentication
 
 ---
