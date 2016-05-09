@@ -174,6 +174,14 @@ And generally speaking, everything that uses **one** authentication factor.
 
 ---
 
+# On Passwords
+
+<br>
+
+![](../images/passwords.png)
+
+---
+
 # Strong Authentication
 
 ---
