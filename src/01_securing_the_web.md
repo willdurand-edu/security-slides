@@ -239,3 +239,20 @@ attacks:
 # HTTPS: The Big Picture
 
 ![](../images/https.png)
+
+---
+
+# No Excuse Not To Use HTTPS!
+
+<br>
+<br>
+
+![](../images/letsencrypt.svg)
+
+<br>
+<br>
+
+* Free certificates for everyone: [letsencrypt.org](https://letsencrypt.org/)
+* TLS does not impact performances negatively: [istlsfastyet.com](https://istlsfastyet.com/)
+
+.fx: no-border
