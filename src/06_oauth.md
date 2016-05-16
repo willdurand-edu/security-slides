@@ -84,6 +84,47 @@ username/password login, or it could well be via OpenID.
 OpenID gives you **one login** for **multiple web applications**. There is no
 suggestion of two web applications sharing your data.
 
+## But...
+
+OpenID Connect has been released last year (April 2015)!
+<br>And it is a game-changer.
+
+---
+
+# OpenID Connect
+
+## Server Flow
+
+1. Create an anti-forgery state token
+2. Send an authentication request to provider (_e.g._, Google)
+3. Confirm the anti-forgery state token
+4. Exchange code for access token and ID token (**J**SON **W**eb **T**oken)
+5. Obtain user information from the ID token
+6. **Authenticate** the user
+
+---
+
+# JWT &amp; ID Token - Google
+
+<br>
+
+    !json
+    {
+        "at_hash": "HK6E_P6Dh8Y93mRNtsDB1Q",
+        "aud": "1234987819200.apps.googleusercontent.com",
+        "azp": "1234987819200.apps.googleusercontent.com",
+        "email": "jsmith@example.com",
+        "email_verified": "true",
+        "exp": 1353604926,
+        "hd": "example.com",
+        "iat": 1353601026,
+        "iss": "accounts.google.com",
+        "sub": "10769150350006150715113082367"
+    }
+
+Source:
+[https://developers.google.com/identity/protocols/OpenIDConnect](https://developers.google.com/identity/protocols/OpenIDConnect)
+
 ---
 
 # OAuth 1.0a

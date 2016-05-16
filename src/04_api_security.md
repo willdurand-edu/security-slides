@@ -41,7 +41,7 @@ from some cookie or header, and then pass that to the real API call I want to ma
 
 ---
 
-# Use SSL For Everything Sensitive
+# Use SSL For Everything <s>Sensitive</s>
 
 Unless your API has only open and non-sensitive data, **support SSL**, and
 **consider even enforcing it** (that is, redirect any API traffic on the non-SSL

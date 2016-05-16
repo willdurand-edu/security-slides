@@ -14,6 +14,7 @@
 * Form Based
 * Web Services Security
 * OpenID
+* OpenID Connect
 * Other Authentication Mechanisms
 
 ---
@@ -435,6 +436,20 @@ are who you say you are.
 Once you establish yourself as the person who uses a particular OpenID, whenever
 someone sees your OpenID in use, anywhere on the Internet, they will know that
 it's you.
+
+---
+
+# Unfortunately,<br>Not Used Enough :-(
+
+---
+
+# OpenID Connect
+
+Built on-top of OAuth 2.0 protocol (April 2015).
+
+More on this later!
+
+> [https://openid.net/connect/](https://openid.net/connect/)
 
 ---
 
